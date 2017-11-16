@@ -1,0 +1,64 @@
+[debug] [2017-11-16T02:01:11.141Z] ----------------------------------------------------------------------
+[debug] [2017-11-16T02:01:11.141Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ander\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2017-11-16T02:01:11.141Z] CLI Version:   3.15.1
+[debug] [2017-11-16T02:01:11.141Z] Platform:      win32
+[debug] [2017-11-16T02:01:11.141Z] Node Version:  v6.9.5
+[debug] [2017-11-16T02:01:11.141Z] Time:          Wed Nov 15 2017 19:01:11 GMT-0700 (US Mountain Standard Time)
+[debug] [2017-11-16T02:01:11.141Z] ----------------------------------------------------------------------
+[debug] 
+[warn] !  Deprecation Warning: Firebase Hosting configuration should be moved under "hosting" key.
+[debug] [2017-11-16T02:01:11.156Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-16T02:01:11.156Z] > authorizing via signed-in user
+[debug] [2017-11-16T02:01:11.172Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/rawr-xd  
+ Wed Nov 15 2017 19:01:11 GMT-0700 (US Mountain Standard Time)
+[debug] [2017-11-16T02:01:11.690Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-16T02:01:11.690Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/rawr-xd/tokens  
+ Wed Nov 15 2017 19:01:11 GMT-0700 (US Mountain Standard Time)
+[debug] [2017-11-16T02:01:12.228Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\ander\Google Drive\@andersamer\rawr-xd'...
+[info] 
+[debug] [2017-11-16T02:01:12.243Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/rawr-xd  
+ Wed Nov 15 2017 19:01:12 GMT-0700 (US Mountain Standard Time)
+[debug] [2017-11-16T02:01:12.743Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-16T02:01:12.743Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/351526790483/clients/_:getWebAppConfig  
+ Wed Nov 15 2017 19:01:12 GMT-0700 (US Mountain Standard Time)
+[debug] [2017-11-16T02:01:13.259Z] <<< HTTP RESPONSE 200
+[info] +  hosting: Local server: http://localhost:5000
+
+[debug] [2017-11-16T04:59:58.702Z] ----------------------------------------------------------------------
+[debug] [2017-11-16T04:59:58.710Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ander\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2017-11-16T04:59:58.712Z] CLI Version:   3.15.1
+[debug] [2017-11-16T04:59:58.712Z] Platform:      win32
+[debug] [2017-11-16T04:59:58.712Z] Node Version:  v6.9.5
+[debug] [2017-11-16T04:59:58.713Z] Time:          Wed Nov 15 2017 21:59:58 GMT-0700 (US Mountain Standard Time)
+[debug] [2017-11-16T04:59:58.713Z] ----------------------------------------------------------------------
+[debug] 
+[warn] !  Deprecation Warning: Firebase Hosting configuration should be moved under "hosting" key.
+[debug] [2017-11-16T04:59:58.871Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-16T04:59:58.873Z] > authorizing via signed-in user
+[debug] [2017-11-16T04:59:58.883Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-11-16T04:59:58.884Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/DS_gD7rUBR8pZLRB0E_WI1OTcgStWKW1hSRBNSWX6hsFOyjoipLpx_77fRCXzic4',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Wed Nov 15 2017 21:59:58 GMT-0700 (US Mountain Standard Time)
+[debug] [2017-11-16T04:59:59.426Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-16T04:59:59.515Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/rawr-xd  
+ Wed Nov 15 2017 21:59:59 GMT-0700 (US Mountain Standard Time)
+[debug] [2017-11-16T05:00:00.312Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-16T05:00:00.315Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/rawr-xd/tokens  
+ Wed Nov 15 2017 22:00:00 GMT-0700 (US Mountain Standard Time)
+[debug] [2017-11-16T05:00:00.916Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\ander\Google Drive\@andersamer\rawr-xd'...
+[info] 
+[debug] [2017-11-16T05:00:00.924Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/rawr-xd  
+ Wed Nov 15 2017 22:00:00 GMT-0700 (US Mountain Standard Time)
+[debug] [2017-11-16T05:00:01.545Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-16T05:00:01.546Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/351526790483/clients/_:getWebAppConfig  
+ Wed Nov 15 2017 22:00:01 GMT-0700 (US Mountain Standard Time)
+[debug] [2017-11-16T05:00:02.506Z] <<< HTTP RESPONSE 200
+[info] +  hosting: Local server: http://localhost:5000
+
