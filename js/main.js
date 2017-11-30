@@ -2,14 +2,11 @@ $("#msgInput").focus();
 
 rawrxd = {
     displayMsg: (content) => {
-        let p = $("<p>");
+        let p = $("<ul>");
         p.text(content);
 
-        let msg = $("<div class='msg'>");
-        msg.append(p);
-
-        let msgList = $("#msgList");
-        msgList.append(msg);
+        let msgList = $("#msgArea");
+        msgList.append(p);
 
         msgList.scrollTop = msgList.scrollHeight;
     },
