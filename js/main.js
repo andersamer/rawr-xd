@@ -1,32 +1,27 @@
-var $msgInput = $("#msgInput");
-var $messages = $("#messages");
+window.addEventListener("load", () => {
 
-window.addEventListener("load", (e) => {
+    var $msgInput = $("#msgInput");
+    var $messages = $("#messages");
+
     $msgInput.focus();
-});
 
-$msgInput.keydown((e) => {
-    console.log("yeet");
-    if(event.which === 13) {
-        console.log("ENTER!!");
+    $msgInput.on("keydown", (event) => {
+        if (event.which === 13) {
+            submitMsg();
+        }
+    });
+
+    function displayMsg(content) {
+        let li = $("<li>");
+        li.text(content);
+        $messages.append(li);
+        $messages.scrollTop = $messages.scrollHeight;
     }
+
+    function submitMsg() {
+        let txt = $msgInput.val().trim();
+        $msgInput.val("");
+        if(txt) { displayMsg(txt); }
+    }
+
 });
-
-function displayMsg(content) {
-    let p = $("<ul>");
-    p.text(content);
-
-    $messages.append(p);
-
-    $messages.scrollTop($messages[0].scrollHeight);
-}
-
-function submitMsg() {
-    let txt = $msgInput.val();
-    $msgInput.val("");
-    displayMsg(txt);
-}
-
-function clearMsgList() {
-    $messages.empty();
-}

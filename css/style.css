@@ -23,14 +23,8 @@ ul {
 }
 
 #msgArea {
-<<<<<<< HEAD
-    overflow-y: scroll;
     height: 100%;
     padding-bottom: 60px;
-=======
-    padding-bottom: 60px;
-    height: 100%;
->>>>>>> 7162a68527845c90efaf4e168b04fdcaf509490d
 }
 
 #msgInput {
