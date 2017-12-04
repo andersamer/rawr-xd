@@ -12,10 +12,10 @@ window.addEventListener("load", () => {
     });
 
     function displayMsg(content) {
-        let li = $("<li>");
+        let li = $("<li class='msg'>");
         li.text(content);
         $messages.append(li);
-        $messages.scrollTop = $messages.scrollHeight;
+        $messages.scrollTop($messages[0].scrollHeight);
     }
 
     function submitMsg() {
