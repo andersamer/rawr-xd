@@ -1,0 +1,32 @@
+[debug] [2017-12-05T00:02:03.152Z] ----------------------------------------------------------------------
+[debug] [2017-12-05T00:02:03.152Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ander\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2017-12-05T00:02:03.152Z] CLI Version:   3.16.0
+[debug] [2017-12-05T00:02:03.152Z] Platform:      win32
+[debug] [2017-12-05T00:02:03.152Z] Node Version:  v6.9.5
+[debug] [2017-12-05T00:02:03.152Z] Time:          Mon Dec 04 2017 17:02:03 GMT-0700 (US Mountain Standard Time)
+[debug] [2017-12-05T00:02:03.152Z] ----------------------------------------------------------------------
+[debug] 
+[warn] !  Deprecation Warning: Firebase Hosting configuration should be moved under "hosting" key.
+[debug] [2017-12-05T00:02:03.183Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-05T00:02:03.183Z] > authorizing via signed-in user
+[debug] [2017-12-05T00:02:03.199Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/rawr-xd  
+  
+ Mon Dec 04 2017 17:02:03 GMT-0700 (US Mountain Standard Time)
+[debug] [2017-12-05T00:02:03.795Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-05T00:02:03.795Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/rawr-xd/tokens  
+  
+ Mon Dec 04 2017 17:02:03 GMT-0700 (US Mountain Standard Time)
+[debug] [2017-12-05T00:02:04.354Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\ander\Google Drive\@andersamer\rawr-xd'...
+[info] 
+[debug] [2017-12-05T00:02:04.370Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/rawr-xd  
+  
+ Mon Dec 04 2017 17:02:04 GMT-0700 (US Mountain Standard Time)
+[debug] [2017-12-05T00:02:04.979Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-05T00:02:04.979Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/351526790483/clients/_:getWebAppConfig  
+  
+ Mon Dec 04 2017 17:02:04 GMT-0700 (US Mountain Standard Time)
+[debug] [2017-12-05T00:02:05.576Z] <<< HTTP RESPONSE 200
+[info] +  hosting: Local server: http://localhost:5000
+
