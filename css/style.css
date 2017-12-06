@@ -30,7 +30,7 @@ ul {
 .msg + .msg { border-top: 1px solid #ccc; }
 
 .unsaved {
-    color: #ddd;
+    color: green;
 }
 
 .saved {

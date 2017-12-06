@@ -15,10 +15,10 @@ window.addEventListener("load", () => {
         }
     });
 
-    function displayMsg(content, saved) {
-        let li;
-        if (saved)
-        let li = $("<li class='msg'>");
+    function displayMsg(content, presaved) {
+        var li;
+        li = $("<li class='msg unsaved'>")
+        if (presaved){ li = $("<li class='msg saved'>"); }
         li.text(content);
         $messages.append(li);
         $messages.scrollTop($messages[0].scrollHeight);
@@ -28,8 +28,8 @@ window.addEventListener("load", () => {
         let txt = $msgInput.val().trim();
         $msgInput.val("");
         if (txt) {
-            saveMsg(txt);
             displayMsg(txt);
+            saveMsg(txt);
         }
     }
 
@@ -38,7 +38,7 @@ window.addEventListener("load", () => {
         messages.get().then((docs) => {
             docs.forEach((doc) => {
                 let data = doc.data();
-                displayMsg(data.content);
+                displayMsg(data.content, true);
             });
             console.log("Messages loaded.");
         })
@@ -50,11 +50,10 @@ window.addEventListener("load", () => {
             content: text
         }
         messages.doc(timestamp).set(data).then(() => { 
-            $("#messages:last-child").addClass("s");
+            $("#messages li:last-child").removeClass("unsaved").addClass("saved");
             console.log("message saved!") 
         });
     }
-
 });
 
 function getTimestamp() {
