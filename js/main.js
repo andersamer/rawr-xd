@@ -58,6 +58,5 @@ window.addEventListener("load", () => {
 
 function getTimestamp() {
     let now = new Date();
-    console.log(now);
     return now.toString();
 }
