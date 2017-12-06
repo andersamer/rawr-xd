@@ -2,6 +2,7 @@
     font-family: "Barlow";
     box-sizing: border-box;
     border-radius: 5px;
+    font-weight: 500;
 }
 
 html, body {
@@ -28,14 +29,9 @@ ul {
     padding: 10px 20px 10px 20px;
 }
 .msg + .msg { border-top: 1px solid #ccc; }
-
-.unsaved {
-    color: green;
-}
-
-.saved {
-    color: #000;
-}
+i { color: #bbb;}
+.unsaved { color: #ccc;}
+.saved { color: #000; } 
 
 #msgArea {
     height: 100%;

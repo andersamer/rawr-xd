@@ -15,11 +15,15 @@ window.addEventListener("load", () => {
         }
     });
 
-    function displayMsg(content, presaved) {
-        var li;
-        li = $("<li class='msg unsaved'>")
+    function displayMsg(content, timestamp, presaved) {
+        var li = $("<li class='msg unsaved'>");
         if (presaved){ li = $("<li class='msg saved'>"); }
         li.text(content);
+        
+        var span = $("<i>");
+        span.text(" - " + timestamp);
+        li.append(span);
+        
         $messages.append(li);
         $messages.scrollTop($messages[0].scrollHeight);
     }
@@ -28,7 +32,6 @@ window.addEventListener("load", () => {
         let txt = $msgInput.val().trim();
         $msgInput.val("");
         if (txt) {
-            displayMsg(txt);
             saveMsg(txt);
         }
     }
@@ -38,25 +41,30 @@ window.addEventListener("load", () => {
         messages.get().then((docs) => {
             docs.forEach((doc) => {
                 let data = doc.data();
-                displayMsg(data.content, true);
+                let date = new Date(getTimestamp()).toLocaleString();
+                displayMsg(data.content, date, true);
             });
             console.log("Messages loaded.");
-        })
+        });
     }
 
     function saveMsg(text) {
         var timestamp = getTimestamp();
+        var string = new Date(timestamp).toLocaleString();
+        var stringStamp = timestamp.toString();
         var data = {
-            content: text
-        }
-        messages.doc(timestamp).set(data).then(() => { 
+            content: text,
+            timestamp: string
+        };
+        displayMsg(text, string);
+        messages.doc(stringStamp).set(data).then(() => { 
             $("#messages li:last-child").removeClass("unsaved").addClass("saved");
-            console.log("message saved!") 
+            console.log("Message saved.");
         });
     }
 });
 
 function getTimestamp() {
-    let now = new Date();
-    return now.toString();
+    let now = Date.now();
+    return now;
 }
