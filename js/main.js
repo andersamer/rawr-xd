@@ -15,6 +15,10 @@ window.addEventListener("load", () => {
         }
     });
 
+    messages.onSnapshot((doc) => {
+        console.log(doc);
+    })
+
     function displayMsg(content, timestamp, presaved) {
         var li = $("<li class='msg unsaved'>");
         if (presaved){ li = $("<li class='msg saved'>"); }
@@ -57,8 +61,9 @@ window.addEventListener("load", () => {
             timestamp: string
         };
         displayMsg(text, string);
+        var $last = $("#messages li:last-child"); 
         messages.doc(stringStamp).set(data).then(() => { 
-            $("#messages li:last-child").removeClass("unsaved").addClass("saved");
+            $last.removeClass("unsaved").addClass("saved");
             console.log("Message saved.");
         });
     }

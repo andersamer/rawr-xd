@@ -39,13 +39,21 @@ i { color: #bbb;}
 }
 
 #msgInput {
-    position: absolute;
     width: 100%;
-    border-radius: 0px;
+    padding: 10px;
+    vertical-align: middle;
+    border: none;
+    border: 1px solid #ccc;
+}
+
+#msgBar {
+    position: absolute;
     height: 60px;
-    border: 6px solid black;
-    left: 0px;
     right: 0px;
+    left: 0px;
     bottom: 0px;
-    padding: 7px;
+    border: 6px solid #232323;
+    background-color: #232323;
+    padding: 5px;
+    border-radius: 0px;
 }
