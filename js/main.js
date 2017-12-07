@@ -4,9 +4,11 @@ window.addEventListener("load", () => {
     var messages = db.collection("messages");
     var update = messages.doc("update");
 
+    
     var $msgInput = $("#msgInput");
     var $messages = $("#messages");
-
+    
+    var old = getTimestamp();
     loadAllMessages();
     $msgInput.focus();
 
@@ -15,10 +17,14 @@ window.addEventListener("load", () => {
             submitMsg();
         }
     });
-    
+
     update.onSnapshot((doc) => {
-        var query = messages.where("timestamp", ">=", doc.data().timestamp);
-        loadMessages(query);
+        var data = doc.data();
+        if(old !== data.timestamp) {
+            var query = messages.where("timestamp", ">", old);
+            loadMessages(query);
+            old = data.timestamp;
+        }
     });
     
     function displayMsg(content, timestamp, presaved) {
@@ -54,14 +60,11 @@ window.addEventListener("load", () => {
                     displayMsg(data.content, parseInt(data.timestamp), true); 
                 }
             });
-            console.log("Messages loaded.");
         });
     }
-    
-    function setUpdate() {
-        update.set({ timestamp: getTimestamp() }).then(() => {
-            console.log("Updated update timestamp.");
-        });
+
+    function setUpdate(num) {
+        update.set({ timestamp: num });
     }
     
     function saveMsg(text) {
@@ -72,13 +75,13 @@ window.addEventListener("load", () => {
         };
         displayMsg(text, timestamp);
         var $last = $("#messages li:last-child"); 
-        var stringStamp = timestamp.toString();
-        messages.doc(stringStamp).set(data).then(() => { 
+        messages.doc(timestamp.toString()).set(data).then(() => { 
             $last.removeClass("unsaved").addClass("saved");
-            console.log("Message saved.");
         });
-        setUpdate();
+        old = timestamp;
+        setUpdate(timestamp);
     }
+    
 });
 
 function getTimestamp() {
