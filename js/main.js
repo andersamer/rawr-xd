@@ -2,11 +2,12 @@ window.addEventListener("load", () => {
 
     var db = firebase.firestore();
     var messages = db.collection("messages");
+    var update = messages.doc("update");
 
     var $msgInput = $("#msgInput");
     var $messages = $("#messages");
 
-    loadMessages();
+    loadAllMessages();
     $msgInput.focus();
 
     $msgInput.on("keydown", (event) => {
@@ -14,18 +15,19 @@ window.addEventListener("load", () => {
             submitMsg();
         }
     });
-
-    messages.onSnapshot((doc) => {
-        console.log(doc);
-    })
-
+    
+    update.onSnapshot((doc) => {
+        var query = messages.where("timestamp", ">=", doc.data().timestamp);
+        loadMessages(query);
+    });
+    
     function displayMsg(content, timestamp, presaved) {
         var li = $("<li class='msg unsaved'>");
         if (presaved){ li = $("<li class='msg saved'>"); }
         li.text(content);
         
         var span = $("<i>");
-        span.text(" - " + timestamp);
+        span.text(" - " + new Date(timestamp).toLocaleString());
         li.append(span);
         
         $messages.append(li);
@@ -40,32 +42,42 @@ window.addEventListener("load", () => {
         }
     }
 
+    function loadAllMessages() {
+        loadMessages(messages);
+    }
 
-    function loadMessages() {
-        messages.get().then((docs) => {
+    function loadMessages(query) {
+        query.get().then((docs) => {
             docs.forEach((doc) => {
                 let data = doc.data();
-                let date = new Date(getTimestamp()).toLocaleString();
-                displayMsg(data.content, date, true);
+                if(doc.id !== "update") {
+                    displayMsg(data.content, parseInt(data.timestamp), true); 
+                }
             });
             console.log("Messages loaded.");
         });
     }
-
+    
+    function setUpdate() {
+        update.set({ timestamp: getTimestamp() }).then(() => {
+            console.log("Updated update timestamp.");
+        });
+    }
+    
     function saveMsg(text) {
         var timestamp = getTimestamp();
-        var string = new Date(timestamp).toLocaleString();
-        var stringStamp = timestamp.toString();
         var data = {
             content: text,
-            timestamp: string
+            timestamp: timestamp
         };
-        displayMsg(text, string);
+        displayMsg(text, timestamp);
         var $last = $("#messages li:last-child"); 
+        var stringStamp = timestamp.toString();
         messages.doc(stringStamp).set(data).then(() => { 
             $last.removeClass("unsaved").addClass("saved");
             console.log("Message saved.");
         });
+        setUpdate();
     }
 });
 
