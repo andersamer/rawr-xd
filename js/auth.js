@@ -1,10 +1,15 @@
 window.addEventListener("load", () => {
-    const auth = firebase.auth();
     auth.onAuthStateChanged((user) => {
         if(user) {
-            loadAllMessages();
+            initUser();
         } else {
-            sysMsg("Sign in!!!");
+            sysMsg("Welcome to rawr-xd.");
         }
     });
 });
+
+function initUser() {
+    clearMessages();
+    loadAllMessages();
+    listenMessages();
+}

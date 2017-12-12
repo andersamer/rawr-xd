@@ -1,35 +1,32 @@
-var db, messages, update, $msgInput, $messages, old;
+// Firebase shortcuts
+const db = firebase.firestore(), 
+      messages = db.collection("messages"),
+      auth = firebase.auth();
+
+var update = messages.doc("update")
+var $msgInput, $messages;
 
 window.addEventListener("load", () => {
 
-    db = firebase.firestore();
-    messages = db.collection("messages");
-    update = messages.doc("update");
-    
+    // Assign Jquery shortcuts
     $msgInput = $("#msgInput");
     $messages = $("#messages");
 
+    // The last time we chekced for messages is right now
     old = getTimestamp();
+    
     $msgInput.focus();
-//    loadAllMessages();
 
+    // Start listening for enter
     $msgInput.on("keydown", (event) => {
         if (event.which === 13) {
             submitMsg();
         }
     });
 
-    update.onSnapshot((doc) => {
-        var data = doc.data();
-        if (old !== data.timestamp) {
-            var query = messages.where("timestamp", ">", old);
-            loadMessages(query);
-            old = data.timestamp;
-        }
-    });
-
 });
 
+// Returns the current time in milliseconds
 function getTimestamp() {
     let now = Date.now();
     return now;

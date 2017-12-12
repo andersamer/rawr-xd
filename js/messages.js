@@ -1,11 +1,31 @@
-function displayMsg(content, timestamp, presaved) {
-    var li = $("<li class='msg unsaved'>");
-    if (presaved) {
-        li = $("<li class='msg saved'>");
-    }
-    li.text(content);
+var old; // Reference for the last time that new messages were loaded
 
-    var span = $("<i>");
+// Start listening for new messages
+function listenMessages() {
+    update.onSnapshot((doc) => {
+        var data = doc.data();
+        if (old !== data.timestamp) {
+            var query = messages.where("timestamp", ">", old);
+            loadMessages(query);
+            old = data.timestamp;
+        }
+    });
+}
+
+// Update the timestamp of the newest message
+function setUpdate(num) {
+    update.set({ timestamp: num });
+}
+
+// Displays a message w/ timestamp, checks to see if it was already saved 
+function displayMsg(content, timestamp, presaved) {
+    var md = markdownit().render(content); 
+    var li = $("<li class='msg unsaved'>");
+    if (presaved) { li = $("<li class='msg saved'>"); }
+
+    li.append(md);
+
+    var span = $("<span class='timestamp'>");
     span.text(" - " + new Date(timestamp).toLocaleString());
     li.append(span);
 
@@ -13,10 +33,12 @@ function displayMsg(content, timestamp, presaved) {
     $messages.scrollTop($messages[0].scrollHeight);
 }
 
+// Display a local message
 function sysMsg(content) {
     displayMsg(content, getTimestamp(), true);
 }
 
+// Saves a message with text from the message input
 function submitMsg() {
     let txt = $msgInput.val().trim();
     $msgInput.val("");
@@ -25,6 +47,7 @@ function submitMsg() {
     }
 }
 
+// Loads the messages from a specific query
 function loadMessages(query) {
     query.get().then((docs) => {
         docs.forEach((doc) => {
@@ -36,8 +59,9 @@ function loadMessages(query) {
     });
 }
 
-function setUpdate(num) {
-    update.set({timestamp: num});
+// Loads every single message
+function loadAllMessages() {
+    loadMessages(messages);
 }
 
 function saveMsg(text) {
@@ -55,6 +79,7 @@ function saveMsg(text) {
     setUpdate(timestamp);
 }
 
-function loadAllMessages() {
-    loadMessages(messages);
+// Clears all messages off of screen
+function clearMessages() {
+    $messages.empty();
 }

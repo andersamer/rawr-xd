@@ -1,7 +1,6 @@
 * {
     font-family: "Barlow";
     box-sizing: border-box;
-    font-weight: 500;
 }
 
 html, body {
@@ -23,11 +22,16 @@ ul {
     margin: 0px;
 }
 
+li > * { display: inline; }
+
+.timestamp { color: #bbb;}
+
 .msg {
     padding: 10px 20px 10px 20px;
 }
+
 .msg + .msg { border-top: 1px solid #ccc; }
-i { color: #bbb;}
+
 .unsaved { color: #ccc;}
 .saved { color: #000; } 
 
