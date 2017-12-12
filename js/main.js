@@ -3,7 +3,6 @@ const db = firebase.firestore(),
       messages = db.collection("messages"),
       auth = firebase.auth();
 
-var update = messages.doc("update")
 var $msgInput, $messages;
 
 window.addEventListener("load", () => {
@@ -11,9 +10,6 @@ window.addEventListener("load", () => {
     // Assign Jquery shortcuts
     $msgInput = $("#msgInput");
     $messages = $("#messages");
-
-    // The last time we chekced for messages is right now
-    old = getTimestamp();
     
     $msgInput.focus();
 

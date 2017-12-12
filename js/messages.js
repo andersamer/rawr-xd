@@ -1,3 +1,4 @@
+var update = messages.doc("update"); // Reference for time of newest message
 var old; // Reference for the last time that new messages were loaded
 
 // Start listening for new messages
