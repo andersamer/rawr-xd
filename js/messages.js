@@ -15,14 +15,16 @@ function listenMessages() {
 
 // Update the timestamp of the newest message
 function setUpdate(num) {
-    update.set({ timestamp: num });
+    update.set({timestamp: num});
 }
 
 // Displays a message w/ timestamp, checks to see if it was already saved 
 function displayMsg(content, timestamp, presaved) {
-    var md = markdownit().render(content); 
+    var md = markdownit().render(content);
     var li = $("<li class='msg unsaved'>");
-    if (presaved) { li = $("<li class='msg saved'>"); }
+    if (presaved) {
+        li = $("<li class='msg saved'>");
+    }
 
     li.append(md);
 
@@ -42,10 +44,18 @@ function sysMsg(content) {
 // Saves a message with text from the message input
 function submitMsg() {
     let txt = $msgInput.val().trim();
-    $msgInput.val("");
-    if (txt) {
-        saveMsg(txt);
+    if (txt.charAt(0) !== "/") {
+        $msgInput.val("");
+        if (txt) {
+            saveMsg(txt);
+        }
+    } else {
+        parseCommand(txt);
     }
+}
+
+function parseCommand(commandstr) {
+    var split = commandstr;
 }
 
 // Loads the messages from a specific query
