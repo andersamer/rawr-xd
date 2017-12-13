@@ -4,12 +4,14 @@ window.addEventListener("load", () => {
             initUser();
         } else {
             sysMsg("Welcome to rawr-xd.");
-            sysMsg("**Uh oh!** Looks like you're not logged in. Type **\"/login\"** to log in with Google.")
+            sysMsg("**Uh oh!** Looks like you're not logged in. Type **\"/login\"** to log in with Google.");
         }
     });
 });
 
 function initUser(nick) {
+    console.log(nick);
+    
     clearMessages();
     loadAllMessages();
     old = getTimestamp();
@@ -21,6 +23,6 @@ function logIn() {
     auth.signInWithPopup(provider).then((result) => {
         var user = result.user;
         console.log(user);
-        initUser();
+        initUser(user.realname);
     });
 }
