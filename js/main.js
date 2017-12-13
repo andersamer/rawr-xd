@@ -3,6 +3,10 @@ const db = firebase.firestore(),
       messages = db.collection("messages"),
       auth = firebase.auth();
 
+// User Vars
+var nick;
+
+// ELement Vars
 var $msgInput, $messages;
 
 window.addEventListener("load", () => {

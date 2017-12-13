@@ -44,18 +44,18 @@ function sysMsg(content) {
 // Saves a message with text from the message input
 function submitMsg() {
     let txt = $msgInput.val().trim();
-    if (txt.charAt(0) !== "/") {
-        $msgInput.val("");
-        if (txt) {
-            saveMsg(txt);
-        }
+    $msgInput.val("");
+    if (txt.charAt(0) !== "/" && user) {
+        saveMsg(txt);
     } else {
         parseCommand(txt);
     }
 }
 
 function parseCommand(commandstr) {
-    var split = commandstr;
+    if(commandstr === "/login") {
+        logIn();
+    } 
 }
 
 // Loads the messages from a specific query
