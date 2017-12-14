@@ -19,12 +19,12 @@ function initUser(nick) {
     loadAllMessages();
     old = getTimestamp();
     listenMessages();
+    broadcastMsg("**" + name + "** has joined!");
 }
 
 function logIn() {
     var provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
-    broadcastMsg("**" + name + "** has joined!");
 }
 
 function logOut() {
