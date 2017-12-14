@@ -19,13 +19,15 @@ function setUpdate(num) {
 }
 
 // Displays a message w/ timestamp, checks to see if it was already saved 
-function displayMsg(content, timestamp, presaved) {
+function displayMsg(content, timestamp, presaved, from, spClass) {
     var md = markdownit().render(content);
     var li = $("<li class='msg unsaved'>");
     if (presaved) {
         li = $("<li class='msg saved'>");
     }
-
+    
+    li.addClass(spClass);
+    li.text(from + ": ");
     li.append(md);
 
     var span = $("<span class='timestamp'>");
@@ -37,25 +39,40 @@ function displayMsg(content, timestamp, presaved) {
 }
 
 // Display a local message
-function sysMsg(content) {
-    displayMsg(content, getTimestamp(), true);
+function sysMsg(content, type) {
+    displayMsg(content, getTimestamp(), true, ":", type);
+}
+
+function broadcastMsg(content) {
+    saveMsg("*" + content + "*", getTimestamp(), "~", "broadcast");
 }
 
 // Saves a message with text from the message input
 function submitMsg() {
     let txt = $msgInput.val().trim();
     $msgInput.val("");
-    if (txt.charAt(0) !== "/" && user) {
-        saveMsg(txt);
+    if (txt.charAt(0) !== "/") {
+        if(currUser) {
+            saveMsg(txt);
+        } else {
+            sysMsg("You must sign in to send messages.", "failure");
+        }
     } else {
         parseCommand(txt);
     }
 }
 
 function parseCommand(commandstr) {
-    if(commandstr === "/login") {
-        logIn();
-    } 
+    switch(commandstr) {
+        case "/login":
+            logIn();
+            break;
+        case "/logout":
+            logOut();
+            break;
+        default:
+            sysMsg("Invalid command.", "failure");
+    }
 }
 
 // Loads the messages from a specific query
@@ -64,7 +81,7 @@ function loadMessages(query) {
         docs.forEach((doc) => {
             let data = doc.data();
             if (doc.id !== "update") {
-                displayMsg(data.content, parseInt(data.timestamp), true);
+                displayMsg(data.content, parseInt(data.timestamp), true, data.from, data.type);
             }
         });
     });
@@ -75,13 +92,15 @@ function loadAllMessages() {
     loadMessages(messages);
 }
 
-function saveMsg(text) {
+function saveMsg(text, timestamp, from=name, type="") {
     var timestamp = getTimestamp();
     var data = {
         content: text,
-        timestamp: timestamp
+        from: from,
+        timestamp: timestamp,
+        type: type
     };
-    displayMsg(text, timestamp);
+    displayMsg(text, timestamp, false, from, type);
     var $last = $("#messages li:last-child");
     messages.doc(timestamp.toString()).set(data).then(() => {
         $last.removeClass("unsaved").addClass("saved");

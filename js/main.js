@@ -3,8 +3,9 @@ const db = firebase.firestore(),
       messages = db.collection("messages"),
       auth = firebase.auth();
 
-// User Vars
-var nick;
+// User variables
+var currUser;
+var name;
 
 // ELement Vars
 var $msgInput, $messages;
