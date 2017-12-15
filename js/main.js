@@ -27,6 +27,14 @@ window.addEventListener("load", () => {
 
 });
 
+window.onbeforeunload = waitasec;
+function waitasec() {
+    if(currUser) {
+        sysMsg("You must log out before leaving. Type **/logout**.", "failure");
+        return "";
+    }
+}
+
 // Returns the current time in milliseconds
 function getTimestamp() {
     let now = Date.now();

@@ -23,22 +23,19 @@ ul {
 }
 
 li > * { display: inline; }
+img { border-radius: 5px; max-width: 1500px; max-height: 1500px;}
 
-.timestamp { color: #bbb;}
-
-.msg {
-    padding: 10px 20px 10px 20px;
-}
-
+.msg { padding: 10px 20px 10px 20px; }
 .msg + .msg { border-top: 1px solid #ccc; }
 
 .unsaved { color: #ccc;}
 .saved { color: #000; } 
 
+.timestamp { color: #bbb;}
 .success { color: #5cb85c; }
 .warning { color: #f0ad4e; }
 .failure { color: #d9534f; }
-.broadcast {color: #007bff; }
+.broadcast {color: #007bff; font-size: 80%; }
 
 
 #msgArea {

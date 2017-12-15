@@ -13,18 +13,20 @@ window.addEventListener("load", () => {
 function initUser(nick) {
     clearMessages();
     name = nick;
-    sysMsg("Welcome back, **" + nick + "**", "success");
-    sysMsg("Type **/logout** at any time to log out.");
     
     loadAllMessages();
     old = getTimestamp();
     listenMessages();
-    broadcastMsg("**" + name + "** has joined!");
+
+    sysMsg("Welcome back, **" + nick + "**.", "success");
+    sysMsg("Type **/logout** at any time to log out.");
 }
 
 function logIn() {
     var provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
+    auth.signInWithPopup(provider).then((result) => {
+        broadcastMsg("**" + result.user.displayName + "** has joined!");
+    })
 }
 
 function logOut() {

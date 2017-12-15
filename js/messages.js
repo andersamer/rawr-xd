@@ -19,12 +19,10 @@ function setUpdate(num) {
 }
 
 // Displays a message w/ timestamp, checks to see if it was already saved 
-function displayMsg(content, timestamp, presaved, from, spClass) {
+function displayMsg(content, timestamp, from, spClass, presaved=true) {
     var md = markdownit().render(content);
     var li = $("<li class='msg unsaved'>");
-    if (presaved) {
-        li = $("<li class='msg saved'>");
-    }
+    if (presaved) { li = $("<li class='msg saved'>"); }
     
     li.addClass(spClass);
     li.text(from + ": ");
@@ -40,17 +38,18 @@ function displayMsg(content, timestamp, presaved, from, spClass) {
 
 // Display a local message
 function sysMsg(content, type) {
-    displayMsg(content, getTimestamp(), true, ":", type);
+    displayMsg(content, getTimestamp(), ":", type);
 }
 
 function broadcastMsg(content) {
-    saveMsg("*" + content + "*", getTimestamp(), "~", "broadcast");
+    saveMsg("*" + content + "*", getTimestamp(), "@", "broadcast");
 }
 
 // Saves a message with text from the message input
 function submitMsg() {
     let txt = $msgInput.val().trim();
     $msgInput.val("");
+ 
     if (txt.charAt(0) !== "/") {
         if(currUser) {
             saveMsg(txt);
@@ -81,7 +80,7 @@ function loadMessages(query) {
         docs.forEach((doc) => {
             let data = doc.data();
             if (doc.id !== "update") {
-                displayMsg(data.content, parseInt(data.timestamp), true, data.from, data.type);
+                displayMsg(data.content, parseInt(data.timestamp), data.from, data.type, true);
             }
         });
     });
@@ -93,6 +92,7 @@ function loadAllMessages() {
 }
 
 function saveMsg(text, timestamp, from=name, type="") {
+    
     var timestamp = getTimestamp();
     var data = {
         content: text,
@@ -100,11 +100,12 @@ function saveMsg(text, timestamp, from=name, type="") {
         timestamp: timestamp,
         type: type
     };
-    displayMsg(text, timestamp, false, from, type);
+
+    displayMsg(text, timestamp, from, type, true);
+    
     var $last = $("#messages li:last-child");
-    messages.doc(timestamp.toString()).set(data).then(() => {
-        $last.removeClass("unsaved").addClass("saved");
-    });
+    messages.doc(timestamp.toString()).set(data).then(() => { $last.removeClass("unsaved").addClass("saved"); });
+    
     old = timestamp;
     setUpdate(timestamp);
 }
