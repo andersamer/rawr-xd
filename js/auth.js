@@ -25,14 +25,14 @@ function initUser(nick) {
 function logIn() {
     var provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider).then((result) => {
-        broadcastMsg("**" + result.user.displayName + "** has joined!");
+        // broadcastMsg("**" + result.user.displayName + "** has joined!");
+        console.log("BOB");
     })
 }
 
 function logOut() {
     if(currUser) {
         broadcastMsg("**" + name + "** has logged off.");
-        console.log("boiiii");
         currUser = undefined;
         auth.signOut();
         clearMessages();
