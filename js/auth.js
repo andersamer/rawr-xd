@@ -32,6 +32,7 @@ function logIn() {
 function logOut() {
     if(currUser) {
         broadcastMsg("**" + name + "** has logged off.");
+        console.log("boiiii");
         currUser = undefined;
         auth.signOut();
         clearMessages();
